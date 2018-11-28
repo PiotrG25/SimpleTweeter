@@ -31,6 +31,8 @@
             Powtórz hasło:<br/>
             <form:password path="confirmPassword"/>
             <form:errors path="confirmPassword" cssClass="error"/>
+
+            <c:if test="differentPassword"><span class="error">różne hasła</span></c:if>
         </label><br/>
 
         <label>
