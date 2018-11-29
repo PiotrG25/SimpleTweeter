@@ -6,5 +6,10 @@
 </head>
 <body>
     <h1>Hello World!</h1>
+    <a href="/register">/register</a><br/>
+    <a href=""></a><br/>
+    <a href=""></a><br/>
+    <a href=""></a><br/>
+    <a href=""></a><br/>
 </body>
 </html>

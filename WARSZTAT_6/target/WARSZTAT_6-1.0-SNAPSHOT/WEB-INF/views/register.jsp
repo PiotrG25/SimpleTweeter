@@ -32,13 +32,15 @@
             <form:password path="confirmPassword"/>
             <form:errors path="confirmPassword" cssClass="error"/>
 
-            <c:if test="differentPassword"><span class="error">różne hasła</span></c:if>
+            <c:if test="${differentPassword}"><span class="error">różne hasła</span></c:if>
         </label><br/>
 
         <label>
             email:<br/>
             <form:input path="email" type="email"/>
             <form:errors path="email" cssClass="error"/>
+
+            <c:if test="${emailTaken}"><span class="error">Ten email jest już zajęty</span></c:if>
         </label><br/>
 
 

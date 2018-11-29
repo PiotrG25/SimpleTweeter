@@ -46,9 +46,17 @@ public class RegisterController {
             return "register";
         }
 
+        if(userRepository.findUserByEmail(userDto.getEmail()) != null){
+            model.addAttribute("emailTaken", true);
+            return "register";
+        }
+
         User user = userDto.getUser();
         user.hashPassword();
         userRepository.save(user);
+
+        session.setAttribute("user", user);
+        session.setMaxInactiveInterval(15 * 60);
 
         return "redirect:/";
     }
