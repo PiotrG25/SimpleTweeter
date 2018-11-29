@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Rejestracja</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,23 +16,29 @@
 
 
         <label>
-            Nazwa:
+            Nazwa:<br/>
             <form:input path="name" type="text"/>
+            <form:errors path="name" cssClass="error"/>
         </label><br/>
 
         <label>
-            Hasło:
+            Hasło:<br/>
             <form:password path="password"/>
+            <form:errors path="password" cssClass="error"/>
         </label><br/>
 
         <label>
-            Powtórz hasło:
+            Powtórz hasło:<br/>
             <form:password path="confirmPassword"/>
+            <form:errors path="confirmPassword" cssClass="error"/>
+
+            <c:if test="differentPassword"><span class="error">różne hasła</span></c:if>
         </label><br/>
 
         <label>
-            email:
+            email:<br/>
             <form:input path="email" type="email"/>
+            <form:errors path="email" cssClass="error"/>
         </label><br/>
 
 

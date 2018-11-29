@@ -3,6 +3,7 @@ package pl.coderslab.dto;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.entity.User;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,6 +23,11 @@ public class UserDto {
 
     @NotNull @NotEmpty @Email
     private String email;
+
+
+    public User getUser(){
+        return new User(name, password, email);
+    }
 
 
     public String getName() {

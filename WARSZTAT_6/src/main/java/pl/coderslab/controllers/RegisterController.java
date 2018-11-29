@@ -7,12 +7,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.dto.UserDto;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
     /*Strona ma pobierać email i hasło.
 
@@ -27,8 +31,8 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/register")
-    public String postRegister(Model model, @ModelAttribute UserDto userDto, BindingResult result){
+    @PostMapping
+    public String postRegister(Model model, @Valid @ModelAttribute UserDto userDto, BindingResult result){
         if(session.getAttribute("user") != null){
             return "redirect:/";
         }
@@ -42,11 +46,14 @@ public class RegisterController {
             return "register";
         }
 
-//        todo dodawanie do DB
-        return null;
+        User user = userDto.getUser();
+        user.hashPassword();
+        userRepository.save(user);
+
+        return "redirect:/";
     }
 
-    @GetMapping("/register")
+    @GetMapping
     public String getRegister(Model model){
         model.addAttribute("userDto", new UserDto());
         return "register";
