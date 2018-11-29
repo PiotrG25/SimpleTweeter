@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.dto.UserDto;
+import pl.coderslab.dto.UserRegisterDto;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 
@@ -32,7 +32,7 @@ public class RegisterController {
     UserRepository userRepository;
 
     @PostMapping
-    public String postRegister(Model model, @Valid @ModelAttribute UserDto userDto, BindingResult result){
+    public String postRegister(Model model, @Valid @ModelAttribute UserRegisterDto userRegisterDto, BindingResult result){
         if(session.getAttribute("user") != null){
             return "redirect:/";
         }
@@ -41,17 +41,17 @@ public class RegisterController {
             return "register";
         }
 
-        if(!userDto.getPassword().equals(userDto.getConfirmPassword())){
+        if(!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())){
             model.addAttribute("differentPassword", true);
             return "register";
         }
 
-        if(userRepository.findUserByEmail(userDto.getEmail()) != null){
+        if(userRepository.findUserByEmail(userRegisterDto.getEmail()) != null){
             model.addAttribute("emailTaken", true);
             return "register";
         }
 
-        User user = userDto.getUser();
+        User user = userRegisterDto.getUser();
         user.hashPassword();
         userRepository.save(user);
 
@@ -63,7 +63,7 @@ public class RegisterController {
 
     @GetMapping
     public String getRegister(Model model){
-        model.addAttribute("userDto", new UserDto());
+        model.addAttribute("userRegisterDto", new UserRegisterDto());
         return "register";
     }
 }

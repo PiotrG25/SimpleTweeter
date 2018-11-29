@@ -8,7 +8,7 @@ import pl.coderslab.entity.User;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class UserDto {
+public class UserRegisterDto {
 
     @NotNull @NotBlank
     private String name;

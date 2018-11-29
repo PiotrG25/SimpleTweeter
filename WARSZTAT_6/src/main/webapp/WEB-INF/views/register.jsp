@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <form:form method="post" modelAttribute="userDto">
+    <form:form method="post" modelAttribute="userRegisterDto">
 
 
         <label>
