@@ -36,7 +36,7 @@
         </label><br/>
 
         <label>
-            email:<br/>
+            Email:<br/>
             <form:input path="email" type="email"/>
             <form:errors path="email" cssClass="error"/>
 

@@ -4,8 +4,34 @@
 <html>
 <head>
     <title>Logowanie</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
+
+    <form:form method="post" modelAttribute="userLoginDto">
+
+
+        <label>
+            Email:<br/>
+            <form:input path="email"/>
+            <form:errors path="email" cssClass="error"/>
+        </label><br/>
+
+        <label>
+            Hasło:<br/>
+            <form:password path="password"/>
+            <form:errors path="password" cssClass="error"/>
+
+            <c:if test="${error}"><span class="error">Niewłaściwy email lub hałso</span></c:if>
+        </label><br/>
+
+
+        <input type="submit" value="Zaloguj się"/>
+    </form:form>
 
 </body>
 </html>
