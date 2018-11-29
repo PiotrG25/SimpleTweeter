@@ -63,6 +63,10 @@ public class RegisterController {
 
     @GetMapping
     public String getRegister(Model model){
+        if(session.getAttribute("user") != null){
+            return "redirect:/";
+        }
+
         model.addAttribute("userRegisterDto", new UserRegisterDto());
         return "register";
     }

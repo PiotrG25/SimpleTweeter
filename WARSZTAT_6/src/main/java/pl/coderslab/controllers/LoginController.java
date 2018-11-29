@@ -55,6 +55,10 @@ public class LoginController {
 
     @GetMapping
     public String getLogin(Model model){
+        if(session.getAttribute("user") != null){
+            return "redirect:/";
+        }
+
         model.addAttribute("userLoginDto", new UserLoginDto());
         return "login";
     }
