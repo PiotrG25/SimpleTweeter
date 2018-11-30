@@ -18,6 +18,9 @@
     <a href="/register">/register</a><br/>
     <a href="/login">/login</a><br/>
     <a href="/logout">/logout</a><br/>
+    <a href="/article">/article</a><br/>
+    <a href=""></a><br/>
+    <a href=""></a><br/>
     <a href=""></a><br/>
     <a href=""></a><br/>
 </body>
