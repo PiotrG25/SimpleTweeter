@@ -7,8 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    /*Użytkownicy: dodawanie, modyfikacja niekluczowych informacji o sobie
-    , usuwanie swojego konta. Użytkownik ma być identyfikowany po emailu (nie może się powtarzać)*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

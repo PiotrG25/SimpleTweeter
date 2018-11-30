@@ -6,5 +6,4 @@ import pl.coderslab.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserByEmail(String email);
-
 }

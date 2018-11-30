@@ -27,7 +27,7 @@ public class ArticleController {
     ArticleRepository articleRepository;
 
     @PostMapping
-    public String postArticle(Model model, @Valid @ModelAttribute ArticleDto articleDto, BindingResult result){
+    public String postArticle(@Valid @ModelAttribute ArticleDto articleDto, BindingResult result){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }

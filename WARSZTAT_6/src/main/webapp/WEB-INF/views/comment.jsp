@@ -24,6 +24,8 @@
 </head>
 <body>
 
+    <h3><a href="/">Strona główna</a></h3>
+
     <div class="article">
         ${article.user.name}<br/>
         ${article.description}<br/>
@@ -53,6 +55,5 @@
             </div><br/>
         </c:forEach>
     </div>
-
 </body>
 </html>

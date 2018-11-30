@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "messages")
 public class Message {
-    /*Wiadomości: Każdy użytkownik może wysłać innemu użytkownikowi wiadomość*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,6 @@ public class Message {
     private User toUser;
 
     private LocalDateTime date;
-
 
     public Message(){}
 

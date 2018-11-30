@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comments")
 public class Comment {
-    /*Komentarze: pod każdym wpisem inni użytkownicy
-     mają mieć możliwość wpisywania komentarzy. Maksymalna długość komentarza to 60 znaków.*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +22,6 @@ public class Comment {
     private User user;
 
     private LocalDateTime date;
-
 
     public Comment(){}
 

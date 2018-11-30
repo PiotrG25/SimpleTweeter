@@ -12,6 +12,8 @@
 </head>
 <body>
 
+    <h3><a href="/">Strona główna</a></h3>
+
     <form:form method="post" modelAttribute="userRegisterDto">
 
 
@@ -46,6 +48,5 @@
 
         <input type="submit" value="Zarejestruj sie"/>
     </form:form>
-
 </body>
 </html>
