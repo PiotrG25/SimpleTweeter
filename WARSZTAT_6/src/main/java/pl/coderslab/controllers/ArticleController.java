@@ -39,7 +39,7 @@ public class ArticleController {
         Article article = new Article(articleDto.getDescription(), (User)session.getAttribute("user"), LocalDateTime.now());
         articleRepository.save(article);
 
-        return "redirect:/";
+        return "redirect:/article";
     }
 
     @GetMapping

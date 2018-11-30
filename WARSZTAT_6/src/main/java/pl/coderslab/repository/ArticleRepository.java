@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    List<Article> findArticlesByUser(User user);
-
     @Query("select a from Article a order by date desc")
     List<Article> findArticlesOrderByDateDesc();
 

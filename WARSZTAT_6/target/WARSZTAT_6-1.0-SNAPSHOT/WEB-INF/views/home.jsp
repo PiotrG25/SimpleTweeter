@@ -20,8 +20,5 @@
     <a href="/logout">/logout</a><br/>
     <a href="/article">/article</a><br/>
     <a href=""></a><br/>
-    <a href=""></a><br/>
-    <a href=""></a><br/>
-    <a href=""></a><br/>
 </body>
 </html>

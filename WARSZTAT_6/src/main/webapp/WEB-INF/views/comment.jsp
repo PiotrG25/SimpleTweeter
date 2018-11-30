@@ -3,15 +3,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Artykuly</title>
+    <title>Komentarz</title>
     <style>
         body{
             text-align: center;
         }
-        #articles, .article{
+        #comments{
             display: inline-block;
         }
-        .article{
+        .comment, .article{
+            display: inline-block;
             margin-top: 10px;
             width: 300px;
             min-height: 50px;
@@ -24,25 +25,31 @@
 <body>
 
     <div class="article">
-        <form:form method="post" modelAttribute="articleDto">
+        ${article.user.name}<br/>
+        ${article.description}<br/>
+        ${article.date}<br/>
+    </div><br/>
+
+
+    <div class="comment">
+        <form:form method="post" modelAttribute="commentDto">
             <label>
-                Dodaj artykul:<br/>
+                Dodaj komentarz:<br/>
                 <form:textarea path="description"/>
                 <form:errors path="description"/>
             </label><br/>
 
-            <input type="submit" value="Dodaj post"/>
+            <input type="submit" value="Dodaj komentarz"/>
         </form:form>
     </div><br/>
 
 
-    <div id="articles">
-        <c:forEach items="${articles}" var="a">
-            <div class="article">
-                ${a.user.name}<br/>
-                ${a.description}<br/>
-                ${a.date}<br/>
-                <a href="/comment/${a.id}">komentarze</a><br/>
+    <div id="comments">
+        <c:forEach items="${comments}" var="c">
+            <div class="comment">
+                ${c.user.name}<br/>
+                ${c.description}<br/>
+                ${c.date}<br/>
             </div><br/>
         </c:forEach>
     </div>
