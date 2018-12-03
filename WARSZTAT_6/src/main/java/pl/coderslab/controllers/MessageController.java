@@ -23,8 +23,8 @@ public class MessageController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("?userId")
-    public String postMessage(@RequestParam Long userId){
+    @PostMapping
+    public String postMessage(@RequestParam(value = "userId") Long id){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }

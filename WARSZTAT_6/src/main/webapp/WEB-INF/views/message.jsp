@@ -7,8 +7,7 @@
 </head>
 <body>
 
-    <form>
-        <%--<form:checkboxes path="userId" items="${users}" itemLabel="name" itemValue="id"/>--%>
+    <form method="post">
         <select name="userId" >
             <c:forEach items="${users}" var="u">
                 <option value="${u.id}">${u.name}</option>
