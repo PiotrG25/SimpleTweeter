@@ -33,7 +33,7 @@ public class CommentController {
         }
 
         if(result.hasErrors()){
-            return "comment/" + id;
+            return "comment";
         }
 
         Comment comment = new Comment(commentDto.getDescription(), articleRepository.findOne(id),
@@ -50,7 +50,7 @@ public class CommentController {
         }
 
         model.addAttribute("article", articleRepository.findOne(id));
-        model.addAttribute("comments", commentRepository.findCommentsByArticleId(id));
+        model.addAttribute("comments", commentRepository.findCommentsByArticleIdOrderByDateDesc(id));
         model.addAttribute("commentDto", new CommentDto());
         return "comment";
     }
