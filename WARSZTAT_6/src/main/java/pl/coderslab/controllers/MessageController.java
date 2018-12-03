@@ -45,7 +45,7 @@ public class MessageController {
                 userRepository.findOne(id), LocalDateTime.now());
         messageRepository.save(message);
 
-        return "redirect:/message" + id;
+        return "redirect:/message/" + id;
     }
     @GetMapping("/{userId}")
     public String getConversation(Model model, @PathVariable(value = "userId") Long id){
@@ -53,7 +53,7 @@ public class MessageController {
             return "redirect:/";
         }
 
-        List<Message> messages = messageRepository.findConversationByFromUserAndToUser(
+        List<Message> messages = messageRepository.findConversationByUsers(
                 (User)session.getAttribute("user"), userRepository.findOne(id));
         model.addAttribute("messages", messages);
         model.addAttribute("messageDto", new MessageDto());
