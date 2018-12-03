@@ -7,6 +7,7 @@
 </head>
 <body>
 
+    <h3><a href="/">Strona główna</a></h3>
 
     <c:forEach items="${users}" var="u">
         <a href="/message/${u.id}">${u.name}</a><br/>
