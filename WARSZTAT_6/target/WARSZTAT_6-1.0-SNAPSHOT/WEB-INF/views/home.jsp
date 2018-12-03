@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
     <h1>Hello
@@ -17,10 +17,14 @@
     </c:choose>
     </h1>
 
-    <a href="/register">/register</a><br/>
-    <a href="/login">/login</a><br/>
-    <a href="/logout">/logout</a><br/>
+    <c:if test="${user == null}">
+        <a href="/register">/register</a><br/>
+        <a href="/login">/login</a><br/>
+    </c:if>
+    <c:if test="${user != null}">
+        <a href="/logout">/logout</a><br/>
+    </c:if>
     <a href="/article">/article</a><br/>
-    <a href=""></a><br/>
+    <a href="/message">/message</a><br/>
 </body>
 </html>
