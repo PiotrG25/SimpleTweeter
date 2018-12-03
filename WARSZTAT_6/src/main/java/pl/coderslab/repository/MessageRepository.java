@@ -8,8 +8,5 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    List<Message> findAllByFromUser(User fromUser);
-    List<Message> findAllByToUser(User toUser);
-
-    List<Message> findConversationByFromUserOrToUser(User fromUser, User toUser);
+    List<Message> findConversationByFromUserAndToUser(User fromUser, User toUser);
 }

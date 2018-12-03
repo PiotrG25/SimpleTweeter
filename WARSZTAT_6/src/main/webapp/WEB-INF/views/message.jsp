@@ -7,14 +7,10 @@
 </head>
 <body>
 
-    <form method="post">
-        <select name="userId" >
-            <c:forEach items="${users}" var="u">
-                <option value="${u.id}">${u.name}</option>
-            </c:forEach>
-        </select>
-        <input type="submit"/>
-    </form>
+
+    <c:forEach items="${users}" var="u">
+        <a href="/message/${u.id}">${u.name}</a><br/>
+    </c:forEach>
 
 </body>
 </html>

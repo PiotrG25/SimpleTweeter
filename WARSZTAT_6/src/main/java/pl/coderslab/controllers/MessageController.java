@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.entity.Message;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.MessageRepository;
 import pl.coderslab.repository.UserRepository;
@@ -23,16 +24,20 @@ public class MessageController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping
-    public String postMessage(@RequestParam(value = "userId") Long id){
+    @GetMapping("/{userId}")
+    public String postMessage(Model model, @PathVariable(value = "userId") Long id){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
 
+        List<Message> messages = messageRepository.findConversationByFromUserAndToUser(
+                (User)session.getAttribute("user"), userRepository.findOne(id));
+        model.addAttribute("messages", messages);
+
         return "conversation";
     }
     @GetMapping
-    public String getMapping(Model model){
+    public String getMapping(){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
