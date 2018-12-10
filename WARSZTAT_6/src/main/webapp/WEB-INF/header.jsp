@@ -8,14 +8,18 @@
 <body>
     <header>
         <c:if test="${user == null}">
-            <a href="/register">/register</a><br/>
-            <a href="/login">/login</a><br/>
+            <c:if test="${inLoggin}">
+                <a href="/register">Zarejestruj się</a><br/>
+            </c:if>
+            <c:if test="${inRegister}">
+                <a href="/login">Zaloguj się</a><br/>
+            </c:if>
         </c:if>
         <c:if test="${user != null}">
-            <a href="/logout">/logout</a><br/>
-            <a href="/article">/article</a><br/>
-            <a href="/message">/message</a><br/>
+            <a href="/logout">Wyloguj się</a><br/>
+            <a href="/article">Wpisy</a><br/>
+            <a href="/message">Wiadomości</a><br/>
         </c:if>
-    </header>
+    </header><br/>
 </body>
 </html>

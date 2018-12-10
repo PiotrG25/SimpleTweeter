@@ -12,6 +12,9 @@
 </head>
 <body>
 
+    <%
+        request.setAttribute("inLogin", true);
+    %>
     <c:import url="../header.jsp"/>
 
     <form:form method="post" modelAttribute="userLoginDto">

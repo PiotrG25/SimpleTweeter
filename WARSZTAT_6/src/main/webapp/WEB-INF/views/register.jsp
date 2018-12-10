@@ -12,6 +12,9 @@
 </head>
 <body>
 
+    <%
+        request.setAttribute("inRegister", true);
+    %>
     <c:import url="../header.jsp"/>
 
     <form:form method="post" modelAttribute="userRegisterDto">
