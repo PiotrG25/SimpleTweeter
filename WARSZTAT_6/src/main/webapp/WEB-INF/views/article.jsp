@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <h3><a href="/">Strona główna</a></h3>
+    <c:import url="../header.jsp"/>
 
     <div class="article">
         <form:form method="post" modelAttribute="articleDto">
