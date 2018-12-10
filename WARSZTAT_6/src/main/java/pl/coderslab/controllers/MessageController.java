@@ -28,6 +28,30 @@ public class MessageController {
     @Autowired
     UserRepository userRepository;
 
+
+    @GetMapping
+    public String getMessage(){
+        if(session.getAttribute("user") == null){
+            return "redirect:/";
+        }
+
+        return "message";
+    }
+
+    @GetMapping("/{userId}")
+    public String getConversation(Model model, @PathVariable(value = "userId") Long id){
+        if(session.getAttribute("user") == null){
+            return "redirect:/";
+        }
+
+        List<Message> messages = messageRepository.findConversationByUsers(
+                (User)session.getAttribute("user"), userRepository.findOne(id));
+        model.addAttribute("messages", messages);
+        model.addAttribute("messageDto", new MessageDto());
+
+        return "conversation";
+    }
+
     @PostMapping("/{userId}")
     public String postConversation(@PathVariable(value = "userId") Long id,
                                    @ModelAttribute @Valid MessageDto messageDto, BindingResult result
@@ -47,28 +71,7 @@ public class MessageController {
 
         return "redirect:/message/" + id;
     }
-    @GetMapping("/{userId}")
-    public String getConversation(Model model, @PathVariable(value = "userId") Long id){
-        if(session.getAttribute("user") == null){
-            return "redirect:/";
-        }
 
-        List<Message> messages = messageRepository.findConversationByUsers(
-                (User)session.getAttribute("user"), userRepository.findOne(id));
-        model.addAttribute("messages", messages);
-        model.addAttribute("messageDto", new MessageDto());
-
-        return "conversation";
-    }
-
-    @GetMapping
-    public String getMessage(){
-        if(session.getAttribute("user") == null){
-            return "redirect:/";
-        }
-
-        return "message";
-    }
 
     public class SimpleUser{
         private Long id;

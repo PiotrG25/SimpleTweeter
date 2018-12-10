@@ -25,6 +25,17 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
+
+    @GetMapping
+    public String getLogin(Model model){
+        if(session.getAttribute("user") != null){
+            return "redirect:/";
+        }
+
+        model.addAttribute("userLoginDto", new UserLoginDto());
+        return "login";
+    }
+
     @PostMapping
     public String postLogin(Model model, @Valid @ModelAttribute UserLoginDto userLoginDto, BindingResult result){
         if(session.getAttribute("user") != null){
@@ -45,15 +56,5 @@ public class LoginController {
         session.setAttribute("user", user);
 
         return "redirect:/";
-    }
-
-    @GetMapping
-    public String getLogin(Model model){
-        if(session.getAttribute("user") != null){
-            return "redirect:/";
-        }
-
-        model.addAttribute("userLoginDto", new UserLoginDto());
-        return "login";
     }
 }

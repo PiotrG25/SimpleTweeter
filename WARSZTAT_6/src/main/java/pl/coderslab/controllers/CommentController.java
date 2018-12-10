@@ -26,8 +26,21 @@ public class CommentController {
     @Autowired
     CommentRepository commentRepository;
 
+
+    @GetMapping
+    public String getComment(@PathVariable Long id, Model model){
+        if(session.getAttribute("user") == null){
+            return "redirect:/";
+        }
+
+        model.addAttribute("article", articleRepository.findOne(id));
+        model.addAttribute("comments", commentRepository.findCommentsByArticleIdOrderByDateDesc(id));
+        model.addAttribute("commentDto", new CommentDto());
+        return "comment";
+    }
+
     @PostMapping
-    public String postComment(@PathVariable(required = false) Long id, @Valid @ModelAttribute CommentDto commentDto, BindingResult result){
+    public String postComment(@PathVariable Long id, @Valid @ModelAttribute CommentDto commentDto, BindingResult result){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
@@ -41,17 +54,5 @@ public class CommentController {
         commentRepository.save(comment);
 
         return "redirect:/comment/" + id;
-    }
-
-    @GetMapping
-    public String getComment(@PathVariable(required = false) Long id, Model model){
-        if(session.getAttribute("user") == null){
-            return "redirect:/";
-        }
-
-        model.addAttribute("article", articleRepository.findOne(id));
-        model.addAttribute("comments", commentRepository.findCommentsByArticleIdOrderByDateDesc(id));
-        model.addAttribute("commentDto", new CommentDto());
-        return "comment";
     }
 }

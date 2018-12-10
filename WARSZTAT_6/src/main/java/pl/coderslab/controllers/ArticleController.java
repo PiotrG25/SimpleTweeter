@@ -26,6 +26,18 @@ public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
 
+
+    @GetMapping
+    public String getArticle(Model model){
+        if(session.getAttribute("user") == null){
+            return "redirect:/";
+        }
+
+        model.addAttribute("articleDto", new ArticleDto());
+        model.addAttribute("articles", articleRepository.findArticlesOrderByDateDesc());
+        return "article";
+    }
+
     @PostMapping
     public String postArticle(@Valid @ModelAttribute ArticleDto articleDto, BindingResult result){
         if(session.getAttribute("user") == null){
@@ -40,16 +52,5 @@ public class ArticleController {
         articleRepository.save(article);
 
         return "redirect:/article";
-    }
-
-    @GetMapping
-    public String getArticle(Model model){
-        if(session.getAttribute("user") == null){
-            return "redirect:/";
-        }
-
-        model.addAttribute("articleDto", new ArticleDto());
-        model.addAttribute("articles", articleRepository.findArticlesOrderByDateDesc());
-        return "article";
     }
 }

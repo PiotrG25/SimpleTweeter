@@ -24,6 +24,17 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
 
+
+    @GetMapping
+    public String getRegister(Model model){
+        if(session.getAttribute("user") != null){
+            return "redirect:/";
+        }
+
+        model.addAttribute("userRegisterDto", new UserRegisterDto());
+        return "register";
+    }
+
     @PostMapping
     public String postRegister(Model model, @Valid @ModelAttribute UserRegisterDto userRegisterDto, BindingResult result){
         if(session.getAttribute("user") != null){
@@ -52,15 +63,5 @@ public class RegisterController {
         session.setMaxInactiveInterval(15 * 60);
 
         return "redirect:/";
-    }
-
-    @GetMapping
-    public String getRegister(Model model){
-        if(session.getAttribute("user") != null){
-            return "redirect:/";
-        }
-
-        model.addAttribute("userRegisterDto", new UserRegisterDto());
-        return "register";
     }
 }
