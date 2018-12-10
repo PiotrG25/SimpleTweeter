@@ -14,7 +14,7 @@
                 <a href="/register">Zarejestruj się</a><br/>
                 <a href="/login">Zaloguj się</a><br/>
             </c:if>
-            <c:if test="${inLoggin}">
+            <c:if test="${inLogin}">
                 <a href="/register">Zarejestruj się</a><br/>
             </c:if>
             <c:if test="${inRegister}">

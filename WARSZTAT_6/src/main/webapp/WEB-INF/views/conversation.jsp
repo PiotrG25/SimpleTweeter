@@ -22,6 +22,12 @@
             border-radius: 5px;
             background-color: darkgray;
         }
+        .toLeft{
+            margin-right: 200px;
+        }
+        .toRight{
+            margin-left: 200px;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +35,6 @@
     <c:import url="../header.jsp"/>
 
     <form:form method="post" modelAttribute="messageDto">
-
 
         <label>
             Napisz wiadomosc:<br/>
@@ -44,7 +49,8 @@
 
     <div id="messages">
         <c:forEach items="${messages}" var="m">
-            <div class="message">
+            <div class="message <c:if test="${user.id == m.fromUser.id}">toLeft</c:if>
+                                <c:if test="${user.id != m.fromUser.id}">toRight</c:if>">
                 ${m.fromUser.name}  >>> ${m.toUser.name}<br/>
                 ${m.description}<br/>
                 ${m.date}<br/>

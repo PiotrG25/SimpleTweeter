@@ -9,6 +9,10 @@
 
     <c:import url="../header.jsp"/>
 
+    <h1>Użytkownik: ${thisUser.name}</h1>
+
+    <a href="/message/${thisUser.id}">Wyślij wiedomość</a><br/>
+
     <div id="articles">
         <c:forEach items="${articleAndCommentsCount}" var="a">
             <div class="article">

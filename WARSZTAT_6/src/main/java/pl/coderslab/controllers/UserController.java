@@ -47,6 +47,7 @@ public class UserController {
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
+        model.addAttribute("thisUser", userRepository.findOne(id));
         model.addAttribute("articleAndCommentsCount", articlesAndComments(id));
         return "user";
     }
