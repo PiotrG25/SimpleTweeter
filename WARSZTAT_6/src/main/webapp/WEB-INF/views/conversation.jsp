@@ -49,8 +49,8 @@
 
     <div id="messages">
         <c:forEach items="${messages}" var="m">
-            <div class="message <c:if test="${user.id == m.fromUser.id}">toLeft</c:if>
-                                <c:if test="${user.id != m.fromUser.id}">toRight</c:if>">
+            <div class="message <c:if test="${user.id == m.fromUser.id}">toRight</c:if>
+                                <c:if test="${user.id != m.fromUser.id}">toLeft</c:if>">
                 ${m.fromUser.name}  >>> ${m.toUser.name}<br/>
                 ${m.description}<br/>
                 ${m.date}<br/>
