@@ -62,6 +62,6 @@ public class RegisterController {
         session.setAttribute("user", user);
         session.setMaxInactiveInterval(15 * 60);
 
-        return "redirect:/";
+        return "redirect:/article";
     }
 }
