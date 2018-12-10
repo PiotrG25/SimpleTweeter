@@ -6,8 +6,14 @@
     <title>Title</title>
 </head>
 <body>
+
     <header>
+
         <c:if test="${user == null}">
+            <c:if test="${inHome}">
+                <a href="/register">Zarejestruj się</a><br/>
+                <a href="/login">Zaloguj się</a><br/>
+            </c:if>
             <c:if test="${inLoggin}">
                 <a href="/register">Zarejestruj się</a><br/>
             </c:if>
@@ -18,7 +24,7 @@
         <c:if test="${user != null}">
             <a href="/logout">Wyloguj się</a><br/>
             <a href="/article">Wpisy</a><br/>
-            <a href="/message">Wiadomości</a><br/>
+            <a href="/user">Użytkownicy</a><br/>
         </c:if>
     </header><br/>
 </body>

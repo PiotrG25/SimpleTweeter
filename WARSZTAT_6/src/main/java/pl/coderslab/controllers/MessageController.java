@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/message")
+@RequestMapping("/message/{userId}")
 public class MessageController {
 
     @Autowired
@@ -30,15 +30,6 @@ public class MessageController {
 
 
     @GetMapping
-    public String getMessage(){
-        if(session.getAttribute("user") == null){
-            return "redirect:/";
-        }
-
-        return "message";
-    }
-
-    @GetMapping("/{userId}")
     public String getConversation(Model model, @PathVariable(value = "userId") Long id){
         if(session.getAttribute("user") == null){
             return "redirect:/";
@@ -52,7 +43,7 @@ public class MessageController {
         return "conversation";
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping
     public String postConversation(@PathVariable(value = "userId") Long id,
                                    @ModelAttribute @Valid MessageDto messageDto, BindingResult result
     ){
@@ -70,31 +61,5 @@ public class MessageController {
         messageRepository.save(message);
 
         return "redirect:/message/" + id;
-    }
-
-
-    public class SimpleUser{
-        private Long id;
-        private String name;
-        public SimpleUser(Long id, String name){
-            this.id = id;
-            this.name = name;
-        }
-        public Long getId(){
-            return id;
-        }
-        public String getName(){
-            return name;
-        }
-    }
-
-    @ModelAttribute("users")
-    public List<SimpleUser> users(){
-        List<SimpleUser> simpleUsers = new ArrayList<>();
-        List<User> users = userRepository.findAll();
-        for(User u : users){
-            simpleUsers.add(new SimpleUser(u.getId(), u.getName()));
-        }
-        return simpleUsers;
     }
 }

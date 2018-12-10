@@ -3,14 +3,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Wiadomosc</title>
+    <title>Użytkownicy</title>
 </head>
 <body>
 
     <c:import url="../header.jsp"/>
 
     <c:forEach items="${users}" var="u">
-        <a href="/message/${u.id}">${u.name}</a><br/>
+        <a href="/user/${u.id}">${u.name}</a><br/>
     </c:forEach>
 
 </body>

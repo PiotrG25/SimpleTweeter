@@ -6,6 +6,10 @@
     <title>Home</title>
 </head>
 <body>
+
+    <%
+        request.setAttribute("inHome", true);
+    %>
     <c:import url="../header.jsp"/>
 </body>
 </html>
