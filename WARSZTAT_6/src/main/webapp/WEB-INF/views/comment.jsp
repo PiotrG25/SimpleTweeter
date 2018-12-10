@@ -37,7 +37,7 @@
         <form:form method="post" modelAttribute="commentDto">
             <label>
                 Dodaj komentarz:<br/>
-                <form:textarea path="description"/>
+                <form:input path="description"/>
                 <form:errors path="description"/>
             </label><br/>
 

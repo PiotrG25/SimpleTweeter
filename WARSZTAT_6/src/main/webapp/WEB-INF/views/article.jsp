@@ -29,7 +29,7 @@
         <form:form method="post" modelAttribute="articleDto">
             <label>
                 Dodaj artykul:<br/>
-                <form:textarea path="description"/>
+                <form:input path="description"/>
                 <form:errors path="description"/>
             </label><br/>
 
