@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    @Query(value = "select m from Message m where m.fromUser = ?1 and m.toUser = ?2 or m.fromUser = ?2 and m.toUser = ?1 order by m.date asc")
+    @Query(value = "select m from Message m where m.fromUser = ?1 and m.toUser = ?2 or m.fromUser = ?2 and m.toUser = ?1 order by m.date desc")
     List<Message> findConversationByUsers(User fromUser, User toUser);
 }
