@@ -6,15 +6,30 @@
     <title>${user.name}</title>
     <link rel="stylesheet" href="../../css/articles.css">
     <script src="../../js/articles.js"></script>
+    <style>
+        .redzone{
+            min-width: 200px;
+            min-height: 50px;
+            border: 1px solid red;
+            border-radius: 5px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
     <c:import url="../header.jsp"/>
 
-    <h1>Użytkownik: ${thisUser.name}</h1>
+    <h1>Witaj ${user.name}</h1>
 
-    <a href="/message/${thisUser.id}">Wyślij wiadomość</a><br/><br/>
+    <div class="redzone">
+        <a href="/editName">Edytuj nazwę</a>
+        <a href="/editPassword">Edytuj hasło</a>
+    </div>
 
+    <a href="/message/${user.id}">Wyślij wiadomość do siebie</a><br/><br/>
+
+    <h3>Twoje wpisy:</h3>
     <div id="articles">
         <c:forEach items="${articlesAndComments}" var="a">
             <div class="article">
