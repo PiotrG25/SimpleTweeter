@@ -26,7 +26,22 @@
         .comment{
             width: 250px;
         }
+        .hide{
+            display: none;
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var commentsButtons = document.querySelectorAll(".commentsButton");
+            var comments = document.querySelectorAll(".comments");
+
+            commentsButtons.forEach(function(element, index){
+                element.addEventListener("click", function(){
+                    comments[index].classList.toggle("hide");
+                })
+            })
+        });
+    </script>
 </head>
 <body>
 
@@ -52,8 +67,8 @@
                 ${a.article.description}<br/>
                 ${a.article.date}<br/>
 
-                <a href="" class="commentsButton">komentarze<c:if test="${a.commentsCount > 0}">(${a.commentsCount})</c:if> </a><br/>
-                <div class="comments">
+                <a href="#" class="commentsButton">komentarze<c:if test="${a.commentsCount > 0}">(${a.commentsCount})</c:if> </a><br/>
+                <div class="comments hide">
                     <c:forEach items="${a.comments}" var="c">
                         <div class="comment">
                                 ${c.user.name}<br/>
