@@ -3,20 +3,16 @@ package pl.coderslab.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.dto.MessageDto;
 import pl.coderslab.entity.Article;
-import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.User;
-import pl.coderslab.modelDto.ArticleAndCommentsCount;
+import pl.coderslab.modelDto.ArticleAndComments;
 import pl.coderslab.modelDto.SimpleUser;
 import pl.coderslab.repository.ArticleRepository;
 import pl.coderslab.repository.CommentRepository;
 import pl.coderslab.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,19 +44,10 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute("thisUser", userRepository.findOne(id));
-        model.addAttribute("articleAndCommentsCount", articlesAndComments(id));
+        model.addAttribute("articlesAndComments", articlesAndComments(id));
         return "user";
     }
 
-
-    public List<ArticleAndCommentsCount> articlesAndComments(Long id){
-        List<Article> articles = articleRepository.findArticlesByUserOrderByDateDesc(userRepository.findOne(id));
-        List<ArticleAndCommentsCount> articleAndCommentsCounts = new ArrayList<>();
-        for(Article a : articles){
-            articleAndCommentsCounts.add(new ArticleAndCommentsCount(a, commentRepository.countCommentsByArticle(a)));
-        }
-        return articleAndCommentsCounts;
-    }
 
     @ModelAttribute("users")
     public List<SimpleUser> users(){
@@ -70,5 +57,14 @@ public class UserController {
             simpleUsers.add(new SimpleUser(u.getId(), u.getName()));
         }
         return simpleUsers;
+    }
+
+    public List<ArticleAndComments> articlesAndComments(Long id){
+        List<Article> articles = articleRepository.findArticlesByUserOrderByDateDesc(userRepository.findOne(id));
+        List<ArticleAndComments> ArticleAndComments = new ArrayList<>();
+        for(Article a : articles){
+            ArticleAndComments.add(new ArticleAndComments(a, commentRepository.findCommentsByArticleIdOrderByDateDesc(a.getId())));
+        }
+        return ArticleAndComments;
     }
 }

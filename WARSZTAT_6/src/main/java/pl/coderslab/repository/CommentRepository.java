@@ -10,6 +10,4 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findCommentsByArticleIdOrderByDateDesc(Long id);
-
-    Long countCommentsByArticle(Article article);
 }

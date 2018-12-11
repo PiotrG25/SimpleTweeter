@@ -14,7 +14,7 @@
     <a href="/message/${thisUser.id}">Wyślij wiedomość</a><br/>
 
     <div id="articles">
-        <c:forEach items="${articleAndCommentsCount}" var="a">
+        <c:forEach items="${articlesAndComments}" var="a">
             <div class="article">
                     ${a.article.description}<br/>
                     ${a.article.date}<br/>
