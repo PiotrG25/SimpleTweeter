@@ -8,6 +8,7 @@
     <script src="../../js/articles.js"></script>
     <style>
         .redzone{
+            display: inline-block;
             min-width: 200px;
             min-height: 50px;
             border: 1px solid red;
@@ -23,7 +24,9 @@
     <h1>Witaj ${user.name}</h1>
 
     <div class="redzone">
+        <%--todo--%>
         <a href="/editName">Edytuj nazwę</a>
+        <%--todo--%>
         <a href="/editPassword">Edytuj hasło</a>
     </div>
 
