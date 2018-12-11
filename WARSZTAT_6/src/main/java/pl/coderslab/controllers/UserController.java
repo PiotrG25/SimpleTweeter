@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.entity.Article;
 import pl.coderslab.entity.User;
 import pl.coderslab.modelDto.ArticleAndComments;
 import pl.coderslab.modelDto.SimpleUser;
@@ -44,7 +43,7 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute("thisUser", userRepository.findOne(id));
-        model.addAttribute("articlesAndComments", articlesAndComments(id));
+        model.addAttribute("articlesAndComments", ArticleAndComments.articlesAndCommentsByUserId(articleRepository, userRepository, commentRepository, id));
         return "user";
     }
 
@@ -57,14 +56,5 @@ public class UserController {
             simpleUsers.add(new SimpleUser(u.getId(), u.getName()));
         }
         return simpleUsers;
-    }
-
-    public List<ArticleAndComments> articlesAndComments(Long id){
-        List<Article> articles = articleRepository.findArticlesByUserOrderByDateDesc(userRepository.findOne(id));
-        List<ArticleAndComments> ArticleAndComments = new ArrayList<>();
-        for(Article a : articles){
-            ArticleAndComments.add(new ArticleAndComments(a, commentRepository.findCommentsByArticleIdOrderByDateDesc(a.getId())));
-        }
-        return ArticleAndComments;
     }
 }

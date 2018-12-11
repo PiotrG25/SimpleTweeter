@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.dto.ArticleDto;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.User;
+import pl.coderslab.modelDto.ArticleAndComments;
 import pl.coderslab.repository.ArticleRepository;
+import pl.coderslab.repository.CommentRepository;
+import pl.coderslab.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -25,6 +28,8 @@ public class ArticleController {
     HttpSession session;
     @Autowired
     ArticleRepository articleRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
 
     @GetMapping
@@ -34,8 +39,8 @@ public class ArticleController {
         }
 
         model.addAttribute("articleDto", new ArticleDto());
-        model.addAttribute("articles", articleRepository.findArticlesOrderByDateDesc());
-        return "article";
+        model.addAttribute("articlesAndComments", ArticleAndComments.articlesAndCommentsAll(articleRepository, commentRepository));
+        return "articles";
     }
 
     @PostMapping
@@ -45,7 +50,7 @@ public class ArticleController {
         }
 
         if(result.hasErrors()){
-            return "article";
+            return "articles";
         }
 
         Article article = new Article(articleDto.getDescription(), (User)session.getAttribute("user"), LocalDateTime.now());

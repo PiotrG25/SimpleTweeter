@@ -8,16 +8,23 @@
         body{
             text-align: center;
         }
-        #articles, .article{
+        #articles, .comments{
             display: inline-block;
         }
-        .article{
+        .article, .comment{
+            display: inline-block;
             margin-top: 10px;
             width: 300px;
             min-height: 50px;
             border: 1px solid black;
             border-radius: 5px;
             background-color: darkgray;
+        }
+        .comments{
+            padding: 0 0 10px 0;
+        }
+        .comment{
+            width: 250px;
         }
     </style>
 </head>
@@ -39,12 +46,22 @@
 
 
     <div id="articles">
-        <c:forEach items="${articles}" var="a">
+        <c:forEach items="${articlesAndComments}" var="a">
             <div class="article">
-                ${a.user.name}<br/>
-                ${a.description}<br/>
-                ${a.date}<br/>
-                <a href="/comment/${a.id}">komentarze</a><br/>
+                ${a.article.user.name}<br/>
+                ${a.article.description}<br/>
+                ${a.article.date}<br/>
+
+                <a href="" class="commentsButton">komentarze<c:if test="${a.commentsCount > 0}">(${a.commentsCount})</c:if> </a><br/>
+                <div class="comments">
+                    <c:forEach items="${a.comments}" var="c">
+                        <div class="comment">
+                                ${c.user.name}<br/>
+                                ${c.description}<br/>
+                                ${c.date}<br/>
+                        </div><br/>
+                    </c:forEach>
+                </div>
             </div><br/>
         </c:forEach>
     </div>

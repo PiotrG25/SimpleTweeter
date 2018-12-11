@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/comment/{id}")
+@RequestMapping("/comment/{articleId}")
 public class CommentController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class CommentController {
 
 
     @GetMapping
-    public String getComment(@PathVariable Long id, Model model){
+    public String getComment(@PathVariable(value = "articleId") Long id, Model model){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
@@ -40,7 +40,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public String postComment(@PathVariable Long id, @Valid @ModelAttribute CommentDto commentDto, BindingResult result){
+    public String postComment(@PathVariable(value = "articleId") Long id, @Valid @ModelAttribute CommentDto commentDto, BindingResult result){
         if(session.getAttribute("user") == null){
             return "redirect:/";
         }
